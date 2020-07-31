@@ -1,0 +1,32 @@
+<div class="container-fluid main-container row">
+    <div class="col-xs-12 col-sm-12 col-md-1 col-lg-2 col-xl-2"></div>
+    <div class="col-xs-12 col-sm-12 col-md-10 col-lg-8 col-xl-8">
+      <div class="card-container" *ngIf='projectData!=null'>
+        <mat-card>
+          <h2>{{projectData.pName}}</h2>
+        </mat-card>
+      </div>
+      <div  class="card-container">
+        <mat-card>
+          <div *ngIf='fields!=null'>
+            <form (submit)='onSubmit(f)' fxFlex fxLayout='column' fxLayoutAlign='center center' #f='ngForm'>
+              <mat-form-field>
+                <mat-label>What did I achieve</mat-label>
+                <textarea matInput required ngModel name="field1" [(ngModel)]="fields.field1"></textarea>
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>What I could have done better</mat-label>
+                <textarea matInput required ngModel name="field2" [(ngModel)]="fields.field2"></textarea>
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Conclusion</mat-label>
+                <textarea matInput required ngModel name="field3" [(ngModel)]="fields.field3"></textarea>
+              </mat-form-field>
+              <button [disabled] ='f.invalid' mat-raised-button type="submit">Save</button>
+            </form>
+          </div>
+        </mat-card>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-1 col-lg-2 col-xl-2"></div>
+</div>

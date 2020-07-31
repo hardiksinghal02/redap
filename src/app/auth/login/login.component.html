@@ -1,0 +1,28 @@
+<mat-card fxLayoutAlign='center center'>
+  <section class="signup-form">
+    <form (submit)='onSubmit(f)' fxLayout='column' #f='ngForm' *ngIf='!resetPassword'>
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+       <input (keyup)="onKey()" matInput required [(ngModel)]='email' name="email" email>
+      </mat-form-field>
+      <mat-form-field >
+        <mat-label>Password</mat-label>
+       <input type='password' matInput required name="password" ngModel>
+      </mat-form-field>
+      <br>
+      <a class="reset-que" (click)='resetPassword = true'>Forgot password ?</a>
+      <br>
+      <button *ngIf='!resetPassword' [disabled]='f.invalid' type="submit" style="width: 30%;margin: auto;" mat-raised-button color='primary'>Login</button>
+    </form>
+    <br>
+    <form fxLayout='column' #f2='ngForm' *ngIf='resetPassword'>
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+       <input matInput required (keyup)="onKey()" [(ngModel)]='resetEmail' name="email" email #email>
+      </mat-form-field>
+      <a class="reset-que" (click)='resetPassword = false'>I remember the password</a>
+      <br>
+      <button (click)='sendResetLink(email.value)' [disabled]='f2.invalid' *ngIf='resetPassword' style="margin: auto;float: right;" mat-raised-button color='primary'>Send reset Link</button>
+    </form>
+  </section>
+</mat-card>

@@ -1,0 +1,45 @@
+<mat-sidenav-container>
+  <mat-sidenav #sidenav role="navigation">
+    <mat-nav-list>
+      <a *ngIf='!getLoginStatus()' mat-list-item routerLink='/login' (click)='sidenav.close()'>
+        <mat-icon>lock_open</mat-icon>
+        <span class='nav-caption'>Login</span>
+      </a>
+      <a  *ngIf='!getLoginStatus()' mat-list-item routerLink='/signup' (click)='sidenav.close()'>
+        <mat-icon>how_to_reg</mat-icon>
+        <span class='nav-caption'>Signup</span></a>
+      <a *ngIf='getLoginStatus()' mat-list-item routerLink='/profile' (click)='sidenav.close()'>
+        <mat-icon>face</mat-icon>
+        <span class='nav-caption'>Profile</span></a>
+        <mat-list-item *ngIf='getLoginStatus()' (click)='sidenav.close() && onLogout()'>
+          <button mat-icon-button  >
+            <mat-icon>exit_to_app</mat-icon>
+            <span class='nav-caption'>Logout</span></button>
+        </mat-list-item>
+
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-progress-bar *ngIf='loading' mode="indeterminate" ></mat-progress-bar>
+    <mat-toolbar color='primary'>
+    <div fxHide.gt-xs>
+      <button mat-icon-button (click)='sidenav.toggle()'>
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div>
+    <div routerLink='/'>LOGO</div>
+    <div fxFlex fxLayout fxLayoutAlign='flex-end' fxHide.xs>
+      <a *ngIf='!getLoginStatus()' routerLink='/login' mat-flat-button color="primary">Login</a>
+      <a *ngIf='!getLoginStatus()' routerLink='/signup' mat-flat-button color="primary">Signup</a>
+      <a *ngIf='getLoginStatus()' routerLink='/profile' mat-flat-button color="primary">Profile</a>
+      <button *ngIf='getLoginStatus()' (click)='onLogout()' mat-flat-button color="primary">Logout</button>
+    </div>
+  </mat-toolbar>
+    <main>
+      <router-outlet></router-outlet>
+    </main>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+

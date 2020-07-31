@@ -1,0 +1,23 @@
+<mat-card fxLayoutAlign='center center'>
+  <section class="signup-form">
+    <form (submit)='onSubmit(f)' fxLayout='column' #f='ngForm'>
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+       <input matInput required ngModel name="name" >
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>email</mat-label>
+       <input (keyup)='onKeyUp("email")' matInput required [(ngModel)]='email' name="email" email>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Password</mat-label>
+       <input type='password' matInput required name="password" #password ngModel>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Confirm Password</mat-label>
+       <input type='password' matInput required name="cnf_password" #cnfpassword ngModel>
+      </mat-form-field>
+      <button [disabled]='(f.invalid || (password.value != cnfpassword.value))' type="submit" style="width: 30%;margin: auto;" mat-raised-button color='primary'>Register</button>
+    </form>
+  </section>
+</mat-card>

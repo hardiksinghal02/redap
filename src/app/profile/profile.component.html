@@ -1,0 +1,56 @@
+
+<div class="container-fluid main-container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-1 col-lg-2 col-xl-2"></div>
+    <div class="col-xs-12 col-sm-12 col-md-10 col-lg-8 col-xl-8">
+      <mat-card>
+        <div style="width: 100%;text-align: center;">
+          <button (click)='createNew = !createNew' mat-raised-button color='primary' class="create-new-btn">{{ createNew ? 'Cancel':'Create new project' }}</button>
+        </div>
+        <div  *ngIf='createNew' style="margin-top:10px;">
+          <form fxFlex fxLayout fxLayoutAlign='center center' #f='ngForm'>
+            <mat-form-field>
+            <mat-label>Project Name</mat-label>
+            <input matInput required ngModel name="p-name" #input>
+            </mat-form-field>
+            <button [disabled]='!input.value' (click)='onCreate(input.value)' style="margin-left: 5px;" mat-raised-button color='primary'>Create</button>
+          </form>
+        </div>
+
+        </mat-card>
+        <mat-card>
+          <mat-progress-bar mode="indeterminate" *ngIf='loading'></mat-progress-bar>
+        <div class="projects">
+          <h2>
+            Projects
+          </h2>
+          <div *ngIf='projects.length==0'>
+            No projects found
+          </div>
+          <mat-accordion *ngIf='projects.length>0'>
+            <mat-expansion-panel *ngFor='let project of projects'>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  {{project.info.pName}}
+                </mat-panel-title>
+                <mat-panel-description>
+                  Created on {{getDateFromId(project.info.date)}}
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+                <mat-action-row>
+                  <button [routerLink]='["/projectdata",project.id]' mat-raised-button color='primary'>View data</button>
+                  <button [routerLink]='["/project",project.id,getTodayDateId()]' mat-raised-button>Edit</button>
+                  <button (click)='onDelete(project.id)' mat-raised-button color='warn'>Delete</button>
+                </mat-action-row>
+
+            </mat-expansion-panel>
+
+          </mat-accordion>
+        </div>
+
+
+      </mat-card>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-1 col-lg-2 col-xl-2"></div>
+  </div>
+</div>

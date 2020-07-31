@@ -1,0 +1,19 @@
+mat-card{
+  max-width: 400px;
+  margin: auto;
+  margin-top: 20px;
+}
+mat-form-field{
+  width: 300px;
+}
+
+.reset-que{
+  text-align:right;
+}
+
+.reset-que:hover{
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+

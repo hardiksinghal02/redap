@@ -1,0 +1,56 @@
+<div class="container-fluid row">
+  <div class="col-xs-12 col-sm-12 col-md-1 col-lg-2 col-xl-2"></div>
+  <div class="col-xs-12 col-sm-12 col-md-10 col-lg-8 col-xl-8">
+    <div class="browse">
+      <mat-card *ngIf='projectData!=null'>
+       <h2>{{projectData.pName}}</h2>
+      </mat-card>
+    </div>
+    <div class="data" >
+
+      <mat-card>
+        <mat-progress-bar mode="indeterminate" *ngIf='loading'></mat-progress-bar>
+        <div class="data-date">
+          Data for {{getDataDate()}}
+        </div>
+        <div class='data-div' *ngIf='fields==null'>
+          <div class='no-data-msg'>
+            No Data available
+          </div>
+          <div>
+            <button [routerLink]="['/project',getId(),getDate()]" mat-raised-button>Add data</button>
+          </div>
+        </div>
+        <div *ngIf='fields!=null'>
+          <mat-card>
+            <p><span style="font-weight:bold;">Field 1 : </span>{{ fields.field1 }}</p>
+          </mat-card>
+          <mat-card>
+            <p><span style="font-weight:bold;">Field 2 : </span>{{ fields.field2 }}</p>
+          </mat-card>
+          <mat-card>
+            <p><span style="font-weight:bold;">Field 3 : </span>{{ fields.field3 }}</p>
+          </mat-card>
+          <div style="text-align: center;">
+            <button [routerLink]="['/project',getId(),getDate()]" mat-raised-button>Edit</button>
+          </div>
+
+        </div>
+      </mat-card>
+    </div>
+    <div class="date-picker">
+      <mat-card>
+        <form fxFlex fxLayout='column' fxLayoutAlign='center center'>
+          <mat-form-field>
+            <mat-label>Choose a date</mat-label>
+            <input matInput [matDatepicker]="picker" disabled #date>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker disabled=false></mat-datepicker>
+          </mat-form-field>
+          <button [disabled]='date.value == ""' (click)='onSubmit(date.value)' style="margin-left: 10px ;" mat-raised-button >Fetch Data</button>
+        </form>
+      </mat-card>
+    </div>
+  </div>
+  <div class="col-xs-12 col-sm-12 col-md-1 col-lg-2 col-xl-2"></div>
+</div>

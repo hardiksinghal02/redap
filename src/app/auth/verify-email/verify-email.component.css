@@ -1,0 +1,12 @@
+div{
+  margin: 20px 0;
+  padding: 0;
+}
+
+.row,body,html{
+  height: 100%;
+}
+mat-card{
+  margin-top: 20px;
+  text-align: center;
+}
